@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>1xBet Prédicteur IA - Dépôt</title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+  <style>
+    .console-box {
+      font-family: monospace;
+      background-color: #1a1a1a;
+      padding: 1rem;
+      border-radius: 0.5rem;
+      box-shadow: 0 0 20px #00ff88;
+      color: #00ff88;
+      height: 250px;
+      overflow-y: auto;
+    }
+    .loading-screen {
+      font-family: monospace;
+      background: #000;
+      color: #00ff88;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      flex-direction: column;
+      z-index: 50;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+    }
+    .hidden-screen {
+      display: none;
+    }
+  </style>
+</head>
+<body class="bg-gray-900 text-white font-sans">
+  <div id="loading" class="loading-screen">
+    <p>Chargement... Veuillez patienter pendant que nous préparons votre expérience.</p>
+  </div>
+
+  <div id="mainContent" class="hidden-screen">
+    <header class="w-full bg-gray-800 p-4 flex justify-between items-center">
+      <h1 class="text-xl font-bold text-green-400">1xBet Prédicteur IA</h1>
+      <nav class="space-x-4">
+        <a href="#how" class="hover:text-green-400">Comment ça marche</a>
+        <a href="#games" class="hover:text-green-400">Jeux</a>
+        <a href="#start" class="hover:text-green-400">Commencer</a>
+      </nav>
+    </header>
+
+    <section class="min-h-screen flex flex-col items-center justify-center px-4 text-center">
+      <h2 class="text-3xl md:text-5xl font-bold mb-6">Gagnez de l'argent avec des prédictions IA</h2>
+      <p class="max-w-xl mb-8 text-gray-300">Rejoignez des milliers de joueurs congolais qui utilisent notre IA pour gagner sur Aviator, Mines et Penalty. 98% de précision, signaux en temps réel, retraits rapides !</p>
+      
+      <!-- ID input -->
+      <input id="userId" type="text" placeholder="Entrez votre ID 1xBet" class="bg-gray-700 text-white p-3 rounded-md mb-4" />
+      <button id="connectButton" class="bg-blue-500 hover:bg-blue-600 text-white font-semibold py-2 px-6 rounded-xl text-lg transition">Connecter mon compte</button>
+
+      <!-- Success message -->
+      <div id="connectionSuccess" class="hidden text-green-400 font-bold mt-6">
+        <p>ID Compte: <span id="accountIdDisplay">1234567890</span> connecté avec succès ✅</p>
+        <p>Statut: Actif | Précision 100% | IA en cours d’analyse</p>
+        <button id="getSignalButton" class="bg-green-500 hover:bg-green-600 text-white font-semibold py-3 px-6 rounded-xl text-lg transition mt-4">Obtenir le Signal</button>
+      </div>
+
+      <!-- Deposit error -->
+      <div id="errorBox" class="hidden bg-red-600 p-6 rounded-xl max-w-md mx-auto mt-6">
+        <h2 class="text-xl font-bold mb-2">⚠️ Dépôt requis</h2>
+        <p class="mb-2">Vous n’avez pas encore effectué de dépôt.</p>
+        <p class="mb-4 font-semibold">Veuillez déposer <span class="underline">au moins 4000 CDF</span> sur votre compte 1xBet pour débloquer l’accès aux signaux IA.</p>
+        <p class="text-yellow-200 text-sm mb-2">🎁 Code Promo : <strong>KNB777</strong></p>
+        <a href="https://affpa.top/L?tag=d_2843259m_97c_&site=2843259&ad=97&r=registration" target="_blank" id="depositButton" class="inline-block bg-yellow-400 hover:bg-yellow-500 text-black font-bold py-2 px-4 rounded-lg transition">
+          Faire un dépôt maintenant
+        </a>
+      </div>
+    </section>
+
+    <section class="bg-gray-800 py-12 px-6 text-center">
+      <h3 class="text-2xl font-bold text-green-400 mb-6">Gagnants du jour (CDF)</h3>
+      <div class="grid md:grid-cols-2 gap-4 text-left max-w-4xl mx-auto text-sm text-green-300">
+        <p>👤 ID: 1029384756 – 412,000 CDF</p>
+        <p>👤 ID: 1122334455 – 388,500 CDF</p>
+        <p>👤 ID: 9988776655 – 341,000 CDF</p>
+        <p>👤 ID: 7766554433 – 305,000 CDF</p>
+        <p>👤 ID: 3344556677 – 271,000 CDF</p>
+        <p>👤 ID: 2211003344 – 243,500 CDF</p>
+      </div>
+    </section>
+
+    <section id="games" class="bg-gray-800 py-12 px-6 text-center">
+      <h3 class="text-2xl font-bold text-green-400 mb-6">Jeux pris en charge</h3>
+      <div class="grid md:grid-cols-3 gap-6 max-w-5xl mx-auto">
+        <div class="bg-gray-700 p-6 rounded-xl shadow-lg">
+          <h4 class="text-xl font-bold mb-2">🎮 Aviator</h4>
+          <p class="text-gray-300">Retirez avant que l’avion s’envole. L’IA détecte les tendances en direct.</p>
+        </div>
+        <div class="bg-gray-700 p-6 rounded-xl shadow-lg">
+          <h4 class="text-xl font-bold mb-2">💣 Mines</h4>
+          <p class="text-gray-300">Évitez les bombes, maximisez vos gains avec notre système intelligent.</p>
+        </div>
+        <div class="bg-gray-700 p-6 rounded-xl shadow-lg">
+          <h4 class="text-xl font-bold mb-2">🥅 Penalty</h4>
+          <p class="text-gray-300">Tirez ou plongez avec précision. L’IA prédit les meilleurs mouvements.</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="how" class="bg-gray-900 py-12 px-6 text-center">
+      <h3 class="text-2xl font-bold text-green-400 mb-6">Comment ça marche ?</h3>
+      <div class="max-w-3xl mx-auto space-y-4 text-gray-300">
+        <p>📡 Notre IA scanne les données de jeu en direct et les résultats précédents 24/7.</p>
+        <p>💡 Elle identifie les modèles gagnants fiables.</p>
+        <p>📲 Vous recevez des signaux en temps réel directement sur votre appareil.</p>
+      </div>
+    </section>
+
+    <section class="bg-black py-12 px-6 text-center">
+      <h3 class="text-xl font-bold text-green-400 mb-4">[ Journal Console IA ]</h3>
+      <div class="console-box max-w-3xl mx-auto text-left" id="console">
+        <p>[INFO] Service de prédiction actif ✅</p>
+      </div>
+    </section>
+
+    <footer class="text-center text-gray-500 text-sm py-6">
+      © 2025 Prédicteur IA. Non affilié à 1xBet. Jouez de manière responsable.
+    </footer>
+  </div>
+
+  <script>
+    setTimeout(() => {
+      document.getElementById("loading").classList.add("hidden-screen");
+      document.getElementById("mainContent").classList.remove("hidden-screen");
+    }, 3000);
+
+    document.getElementById("connectButton").addEventListener("click", () => {
+      const userId = document.getElementById("userId").value;
+      if (userId) {
+        document.getElementById("accountIdDisplay").innerText = userId;
+        document.getElementById("connectionSuccess").classList.remove("hidden");
+        document.getElementById("errorBox").classList.add("hidden");
+      }
+    });
+
+    document.getElementById("getSignalButton").addEventListener("click", () => {
+      document.getElementById("errorBox").classList.remove("hidden");
+    });
+  </script>
+</body>
+</html>
