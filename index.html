@@ -55,26 +55,30 @@
       <h2 class="text-3xl md:text-5xl font-bold mb-6">Gagnez de l'argent avec des prédictions IA</h2>
       <p class="max-w-xl mb-8 text-gray-300">Rejoignez des milliers de joueurs congolais qui utilisent notre IA pour gagner sur Aviator, Mines et Penalty. 98% de précision, signaux en temps réel, retraits rapides !</p>
       
-      <!-- ID input -->
       <input id="userId" type="text" placeholder="Entrez votre ID 1xBet" class="bg-gray-700 text-white p-3 rounded-md mb-4" />
       <button id="connectButton" class="bg-blue-500 hover:bg-blue-600 text-white font-semibold py-2 px-6 rounded-xl text-lg transition">Connecter mon compte</button>
 
-      <!-- Success message -->
+      <div id="connectingBox" class="hidden bg-black p-6 rounded-xl max-w-md mx-auto mt-6 text-green-400 font-mono text-left">
+        <p>[INFO] Connexion au serveur IA...</p>
+        <p>[INFO] Attribution du port sécurisé...</p>
+        <p>[INFO] Authentification de l'ID...</p>
+        <p>[INFO] Synchronisation des données de jeu...</p>
+        <p>[INFO] Chargement du module de prédiction...</p>
+        <p id="finalStatus" class="font-bold mt-2"></p>
+      </div>
+
       <div id="connectionSuccess" class="hidden text-green-400 font-bold mt-6">
         <p>ID Compte: <span id="accountIdDisplay">1234567890</span> connecté avec succès ✅</p>
         <p>Statut: Actif | Précision 100% | IA en cours d’analyse</p>
         <button id="getSignalButton" class="bg-green-500 hover:bg-green-600 text-white font-semibold py-3 px-6 rounded-xl text-lg transition mt-4">Obtenir le Signal</button>
       </div>
 
-      <!-- Deposit error -->
       <div id="errorBox" class="hidden bg-red-600 p-6 rounded-xl max-w-md mx-auto mt-6">
         <h2 class="text-xl font-bold mb-2">⚠️ Dépôt requis</h2>
         <p class="mb-2">Vous n’avez pas encore effectué de dépôt.</p>
         <p class="mb-4 font-semibold">Veuillez déposer <span class="underline">au moins 4000 CDF</span> sur votre compte 1xBet pour débloquer l’accès aux signaux IA.</p>
         <p class="text-yellow-200 text-sm mb-2">🎁 Code Promo : <strong>KNB777</strong></p>
-        <a href="https://affpa.top/L?tag=d_2843259m_97c_&site=2843259&ad=97&r=registration" target="_blank" id="depositButton" class="inline-block bg-yellow-400 hover:bg-yellow-500 text-black font-bold py-2 px-4 rounded-lg transition">
-          Faire un dépôt maintenant
-        </a>
+        <a href="https://affpa.top/L?tag=d_2843259m_97c_&site=2843259&ad=97&r=registration" target="_blank" id="depositButton" class="inline-block bg-yellow-400 hover:bg-yellow-500 text-black font-bold py-2 px-4 rounded-lg transition">Faire un dépôt maintenant</a>
       </div>
     </section>
 
@@ -124,9 +128,7 @@
       </div>
     </section>
 
-    <footer class="text-center text-gray-500 text-sm py-6">
-      © 2025 Prédicteur IA. Non affilié à 1xBet. Jouez de manière responsable.
-    </footer>
+    <footer class="text-center text-gray-500 text-sm py-6">© 2025 Prédicteur IA. Non affilié à 1xBet. Jouez de manière responsable.</footer>
   </div>
 
   <script>
@@ -139,8 +141,19 @@
       const userId = document.getElementById("userId").value;
       if (userId) {
         document.getElementById("accountIdDisplay").innerText = userId;
-        document.getElementById("connectionSuccess").classList.remove("hidden");
+        document.getElementById("connectionSuccess").classList.add("hidden");
         document.getElementById("errorBox").classList.add("hidden");
+        const box = document.getElementById("connectingBox");
+        box.classList.remove("hidden");
+        const finalStatus = document.getElementById("finalStatus");
+        finalStatus.innerText = "";
+        setTimeout(() => {
+          finalStatus.innerText = "[SUCCÈS] ID connecté et IA opérationnelle ✅";
+          setTimeout(() => {
+            document.getElementById("connectingBox").classList.add("hidden");
+            document.getElementById("connectionSuccess").classList.remove("hidden");
+          }, 1500);
+        }, 2500);
       }
     });
 
